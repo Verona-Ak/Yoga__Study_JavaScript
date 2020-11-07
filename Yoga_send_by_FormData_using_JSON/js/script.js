@@ -130,21 +130,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // ПРИМЕР ИЗ УРОКА
-    // function makeArr() {
-    //     var items = [];
-    //     for (let i =0; i < 10; i++) {
-    //         var item = function(){
-    //             console.log(i);
-    //         };
-    //         items.push(item);
-    //     }
-    //     return items;
-    // }
-    // var arr = makeArr();
-
-
-
     // Форма
     let message = {
         loading: 'Загрузка...',
@@ -175,7 +160,6 @@ window.addEventListener('DOMContentLoaded', function() {
         });
         let json = JSON.stringify(obj);  // превращаем объект в json формат
         request.send(json); //отправляем файл на сервер
-       
         request.addEventListener('readystatechange', function() {
             if (request.readyState < 4) {
                 statusMessage.innerHTML = message.loading;
