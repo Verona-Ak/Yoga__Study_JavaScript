@@ -10,6 +10,12 @@ This project includes the following:<br>
         Countdown timer
     </li>
     <li>
+        Slider
+    </li>
+    <li>
+        Calculator
+    </li>
+    <li>
         Using FormData to get data from user ( - 1st way)
     </li>
     <li>
