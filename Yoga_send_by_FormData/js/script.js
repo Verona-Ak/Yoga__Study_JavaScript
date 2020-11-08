@@ -140,11 +140,9 @@ window.addEventListener('DOMContentLoaded', function() {
         input = form.getElementsByTagName('input'),
         statusMessage = document.createElement('div');
         statusMessage.classList.add('status');
-
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         form.appendChild(statusMessage);
-        
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
@@ -162,15 +160,51 @@ window.addEventListener('DOMContentLoaded', function() {
             } else {
                 statusMessage.innerHTML = message.failure;
             }
-
         });
-
         for (let i = 0; i < input.length; i++) {
             input[i].value = '';
         }
-
-        
-
     });
 
+    // Cлайдер
+    let slideIndex = 1,  // индекс текущего слайда
+        slides = document.querySelectorAll('.slider-item'),
+        prev = document.querySelector('.prev'),
+        next = document.querySelector('.next'),
+        dotsWrapper = document.querySelector('.slider-dots'),
+        dots = document.querySelectorAll('.dot');
+    
+    function showSlides(n) {
+        if(n > slides.length) {
+            slideIndex = 1;
+        } else if (n < 1) {
+            slideIndex = slides.length;
+        }
+        slides.forEach((item)=> item.style.display = 'none');
+        dots.forEach((item) => item.classList.remove('dot-active'));
+        slides[slideIndex-1].style.display = 'block';
+        dots[slideIndex-1].classList.add('dot-active');
+    }
+    showSlides(slideIndex);
+
+    function plusSlides (n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlde(n) {
+        showSlides(slideIndex = n);
+    }
+
+    prev.addEventListener('click', ()=> {
+        plusSlides(-1);
+    });
+    next.addEventListener('click', ()=> {
+        plusSlides(1);
+    });
+    dotsWrapper.addEventListener('click', (e)=> {
+        for (let i = 0; i < dots.length + 1; i++) {
+            if (e.target && e.target.classList.contains('dot') && e.target == dots[i-1]) {
+                currentSlde(i);
+            }
+        }
+    });
 });
